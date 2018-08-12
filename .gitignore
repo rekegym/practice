@@ -1,8 +1,13 @@
 # ファイル
 .DS_store
+gulpfile.js
+GulpWatch.bat
+package.json
+package-lock.json
 
 # ディレクトリ
 /tmp
+/node_modules
 
 # ワイルドカード
 *.log
