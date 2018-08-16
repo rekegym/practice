@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Dice - rekegym/practice</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container py-4">
+        <h1><i class="fas fa-dice fa-fw"></i> Web Dice</h1>
+        <!--  Breadcrumb -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item"><a href="./index.html">Index</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Web Dice</li>
+            </ol>
+        </nav>
+        <!-- /Breadcrumb -->
+        <!--  Content -->
+        <div class="row">
+            <!--  Dice Roll -->
+            <div class="col-md-8 mb-4 p-webdice">
+                <div class="container-fluid rounded-top py-2 bg-light border p-webdice__roll">
+                    <h2 class="mb-3">Dice Roll</h2>
+                    <p class="mb-1">出目を合計するもの</p>
+                    <div class="row mb-3">
+                        <div class="col-8 input-group">
+                            <input type="number" class="form-control input-group-prepend" value="1" min="1" id="dice--number">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">D</div>
+                            </div>
+                            <select class="custom-select" id="dice--polyhedron">
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="6" selected>6</option>
+                                <option value="8">8</option>
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                            </select>
+                        </div>
+                        <div class="col-4 text-right"><button type="button" class="btn btn-success w-100 p-webdice__btn" id="dice--submit">Roll</button></div>
+                    </div>
+                    <p class="mb-1">2回振った出目の1つめを10の位、2つめを1の位として結合するもの</p>
+                    <div class="row mb-3">
+                        <div class="col"><button type="button" class="btn btn-success w-100 p-webdice__btn" id="dice--d100">D100</button></div>
+                        <div class="col"><button type="button" class="btn btn-success w-100 p-webdice__btn" id="dice--d66">D66</button></div>
+                        <div class="col"><button type="button" class="btn btn-success w-100 p-webdice__btn" id="dice--d99">D99</button></div>
+                    </div>
+                </div>
+                <!--  Result -->
+                <div class="container-fluid bg-light border-left border-right py-2 p-webdice__result">
+                    <h2>Result</h2>
+                    <div class="row mb-2">
+                        <div class="order-2 col-6 text-right font-weight-bold" id="dice--result"></div>
+                        <div class="order-1 col-6" id="dice--current"></div>
+                        <div class="order-3 col-12 text-right small" id="dice--array"></div>
+                    </div>
+                </div>
+                <!-- /Result -->
+                <!--  Log -->
+                <div class="container-fluid bg-light border rounded-bottom py-2 p-webdice__log">
+                    <h2>Log</h2>
+                    <ul class="list-unstyled mb-2">
+                    </ul>
+                </div>
+                <!-- /Log -->
+            </div>
+            <!-- /Dice Roll -->
+            <!--  Sidebar -->
+            <div class="col-md-4 mb-4 p-sidebar">
+                <div class="list-group">
+                    <a href="./index.html" class="list-group-item list-group-item-action bg-dark border-secondary text-white"><i class="fas fa-file-alt fa-fw"></i> Index</a>
+                    <a href="./webdice.html" class="list-group-item list-group-item-action bg-dark border-secondary text-white active"><i class="fas fa-dice fa-fw"></i> Web Dice</a>
+                    <a href="#" class="list-group-item list-group-item-action bg-dark border-secondary text-white"></a>
+                </div>
+            </div>
+            <!-- /Sidebar -->
+        </div>
+        <!-- /Content -->
+    </div>
+    <!-- JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js" integrity="sha256-CutOzxCRucUsn6C6TcEYsauvvYilEniTXldPa6/wu0k=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/locale/ja.js" integrity="sha256-F3T8SPFOUqMJgaeErWjyX8TJJhug33onhWLYqryTyhQ=" crossorigin="anonymous"></script>
+    <script src="js/script.js"></script>
+    <script src="js/webdice.js"></script>
+</body>
+</html>
