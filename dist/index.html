@@ -10,16 +10,37 @@
 </head>
 <body>
     <div class="container py-4">
+        <h1><i class="fas fa-file-alt fa-fw"></i> Index</h1>
+        <!--  Breadcrumb -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item">Index</li>
+            </ol>
+        </nav>
+        <!-- /Breadcrumb -->
+        <!--  Content -->
         <div class="row">
-            <div class="col-12">
-                <h1>index</h1>
+            <!--  Caption -->
+            <div class="col-md-8 mb-4">
+                <div class="container-fluid mb-3 rounded py-2 bg-light border">
+                    <h2>Web Dice</h2>
+                    <p>複数振ったサイコロの出目を合計するタイプと、2つのサイコロを振った出目を結合するタイプ。</p>
+                </div>
+                <div class="container-fluid mb-3 rounded py-2 bg-light border">
+                    <h2>High &amp; Low</h2>
+                    <p>トランプゲーム</p>
+                </div>
             </div>
-        </div>
-
-        <div class="list-group">
-            <a href="./webdice.html" class="list-group-item list-group-item-action"><i class="fas fa-dice fa-fw"></i> Web Dice</a>
-            <a href="#" class="list-group-item list-group-item-action"></a>
-        </div>
+            <!--  /Caption -->
+            <!--  Sidebar -->
+            <div class="col-md-4 mb-4 p-sidebar">
+                <div class="list-group">
+                    <a href="./index.html" class="list-group-item list-group-item-action bg-dark border-secondary text-white"><i class="fas fa-file-alt fa-fw"></i> Index</a>
+                    <a href="./webdice.html" class="list-group-item list-group-item-action bg-dark border-secondary text-white active"><i class="fas fa-dice fa-fw"></i> Web Dice</a>
+                    <a href="./high-low.html" class="list-group-item list-group-item-action bg-dark border-secondary text-white"><i class="fas fa-fw fa-arrows-alt-v"></i> High &amp; Low</a>
+                </div>
+            </div>
+            <!-- /Sidebar -->
     </div>
     <!-- JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
