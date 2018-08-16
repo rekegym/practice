@@ -2,6 +2,8 @@
  * Web Dice
  */
 
+moment.locale('ja');
+
 var $rollBtn = $('.p-webdice__btn');
 var btnId = {
     submit : 'dice--submit',
@@ -19,7 +21,6 @@ var diceCurrent = {
     score : '',
     array : []
 }
-moment.locale('ja');
 
 $rollBtn.on('click', function(){
     var current = $(this).text();
@@ -92,7 +93,7 @@ function funcOutputLog( score, roll, array ){
         '<br>\n<span class="small">' +
         array +
         '</span>\n</div>\n    <div class="order-1 col-sm">' +
-        '<span class="small">' + moment().format('YYYY/MM/DD HH:mm') + '</span><br>\n' +
+        '<span class="small">' + moment().format('YYYY/MM/DD HH:mm:ss') + '</span><br>\n' +
         roll + 
         '</div>\n</li>';
     return log;
