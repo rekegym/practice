@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>Web Dice - rekegym/practice</title>
+    <title>High &amp; Low - rekegym/practice</title>
     <!-- CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
@@ -10,66 +10,53 @@
 </head>
 <body>
     <div class="container py-4">
-        <h1><i class="fas fa-dice fa-fw"></i> Web Dice</h1>
+        <h1><i class="fas fa-fw fa-arrows-alt-v"></i> High &amp; Low</h1>
+        <p>トランプ素材は<a href="http://sozai.7gates.net/" target="_blank">無料素材倶楽部</a>様からお借りしています。</p>
         <!--  Breadcrumb -->
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item"><a href="./index.html">Index</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Web Dice</li>
+                <li class="breadcrumb-item active" aria-current="page">High &amp; Low</li>
             </ol>
         </nav>
         <!-- /Breadcrumb -->
         <!--  Content -->
         <div class="row">
-            <!--  Dice Roll -->
-            <div class="col-md-8 mb-4 p-webdice">
-                <div class="container-fluid rounded-top py-2 bg-light border p-webdice__roll">
-                    <h2 class="mb-3">Dice Roll</h2>
-                    <p class="mb-1">出目を合計するもの</p>
+            <!--  High & Low -->
+            <div class="col-md-8 mb-4 p-highlow">
+                <div class="container-fluid rounded-top py-2 bg-light border">
                     <div class="row mb-3">
-                        <div class="col-8 input-group">
-                            <input type="number" class="form-control input-group-prepend" value="1" min="1" id="dice--number">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">D</div>
-                            </div>
-                            <select class="custom-select" id="dice--polyhedron">
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="6" selected>6</option>
-                                <option value="8">8</option>
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                            </select>
-                        </div>
-                        <div class="col-4 text-right"><button type="button" class="btn btn-success w-100 p-webdice__btn" id="dice--submit">Roll</button></div>
+                        <h2 class="col-sm mb-3">High &amp; Low</h2>
+                        <div class="col-sm pt-1 ml-auto"><button type="button" class="btn btn-success w-100" id="btn-start">Start / Reset</button></div>
                     </div>
-                    <p class="mb-1">2回振った出目の1つめを10の位、2つめを1の位として結合するもの</p>
                     <div class="row mb-3">
-                        <div class="col"><button type="button" class="btn btn-success w-100 p-webdice__btn" id="dice--d100">D100</button></div>
-                        <div class="col"><button type="button" class="btn btn-success w-100 p-webdice__btn" id="dice--d66">D66</button></div>
-                        <div class="col"><button type="button" class="btn btn-success w-100 p-webdice__btn" id="dice--d99">D99</button></div>
+                        <div class="col text-right"><img src="img/trump/back.png" alt="TRUMP" data-card-num="" class="p-highlow__card" id="card-current"></div>
+                        <div class="col text-left"><img src="img/trump/back.png" alt="TRUMP" data-card-num="" class="p-highlow__card" id="card-compare"></div>
+                        <!--<div class="col text-center"><img src="img/trump/back.png" alt="TRUMP" data-card-num="" id="card-stock"></div>-->
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col"><button type="button" class="btn btn-danger w-100 p-highlow__btn" id="btn-high" disabled>High</button></div>
+                        <div class="col"><button type="button" class="btn btn-info w-100 p-highlow__btn" id="btn-low" disabled>Low</button></div>
                     </div>
                 </div>
                 <!--  Result -->
-                <div class="container-fluid bg-light border-left border-right py-2 p-webdice__result">
+                <div class="container-fluid bg-light border-left border-right py-2">
                     <h2>Result</h2>
                     <div class="row mb-2">
-                        <div class="order-2 col-6 text-right font-weight-bold" id="dice--result"></div>
-                        <div class="order-1 col-6" id="dice--current"></div>
-                        <div class="order-3 col-12 text-right small" id="dice--array"></div>
+                        <div class="col" id="highlow-result"></div>
+                        <div class="col text-right font-weight-bold"><span id="highlow-win">0</span> 勝</div>
                     </div>
                 </div>
                 <!-- /Result -->
                 <!--  Log -->
-                <div class="container-fluid bg-light border rounded-bottom py-2 p-webdice__log">
+                <div class="container-fluid bg-light border rounded-bottom py-2" id="highlow-log">
                     <h2>Log</h2>
                     <ul class="list-unstyled mb-2">
                     </ul>
                 </div>
                 <!-- /Log -->
             </div>
-            <!-- /Dice Roll -->
+            <!-- /High & Low -->
             <!--  Sidebar -->
             <div class="col-md-4 mb-4 p-sidebar">
                 <div class="list-group">
@@ -89,6 +76,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js" integrity="sha256-CutOzxCRucUsn6C6TcEYsauvvYilEniTXldPa6/wu0k=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/locale/ja.js" integrity="sha256-F3T8SPFOUqMJgaeErWjyX8TJJhug33onhWLYqryTyhQ=" crossorigin="anonymous"></script>
     <script src="js/script.js"></script>
-    <script src="js/webdice.js"></script>
+    <script src="js/high-low.js"></script>
 </body>
 </html>
